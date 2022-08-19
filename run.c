@@ -40,6 +40,14 @@ int main() {
     fprintf(procsFile, "%d\n", childPid);
     fclose(procsFile);
 
+    FILE *pidsMaxFile = fopen(
+        "/sys/fs/cgroup/my_group/pids.max",
+        "w"
+    );
+
+    fprintf(pidsMaxFile, "%d\n", 5);
+    fclose(pidsMaxFile);
+
     waitpid(childPid, NULL, 0);
 
     return 0;
